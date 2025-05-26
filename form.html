@@ -66,7 +66,160 @@
       }
     }
   </script>
-    <link rel="stylesheet" href="css/req.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+    
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .gradient-text {
+      background: linear-gradient(90deg, #8b5cf6 0%, #0ea5e9 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .gradient-border {
+      position: relative;
+    }
+    
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 0.75rem;
+      padding: 2px;
+      background: linear-gradient(135deg, #8b5cf6 0%, #0ea5e9 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    
+    .checkmark {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: block;
+      stroke-width: 3;
+      stroke: #fff;
+      stroke-miterlimit: 10;
+      margin: 10px auto;
+      box-shadow: inset 0px 0px 0px #10b981;
+      animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+    }
+    
+    .checkmark__circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 3;
+      stroke-miterlimit: 10;
+      stroke: #10b981;
+      fill: none;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+    
+    .checkmark__check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+    }
+    
+    @keyframes stroke {
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+    
+    @keyframes scale {
+      0%, 100% {
+        transform: none;
+      }
+      50% {
+        transform: scale3d(1.1, 1.1, 1);
+      }
+    }
+    
+    @keyframes fill {
+      100% {
+        box-shadow: inset 0px 0px 0px 30px #10b981;
+      }
+    }
+    
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #ffd700;
+    }
+    
+    .confetti:nth-child(1) { background: #ff6b6b; left: 10%; animation: confetti-fall 3s linear infinite; animation-delay: 0s; }
+    .confetti:nth-child(2) { background: #4ecdc4; left: 20%; animation: confetti-fall 3s linear infinite; animation-delay: 0.2s; }
+    .confetti:nth-child(3) { background: #45b7d1; left: 30%; animation: confetti-fall 3s linear infinite; animation-delay: 0.4s; }
+    .confetti:nth-child(4) { background: #96ceb4; left: 40%; animation: confetti-fall 3s linear infinite; animation-delay: 0.6s; }
+    .confetti:nth-child(5) { background: #ffeaa7; left: 50%; animation: confetti-fall 3s linear infinite; animation-delay: 0.8s; }
+    .confetti:nth-child(6) { background: #dda0dd; left: 60%; animation: confetti-fall 3s linear infinite; animation-delay: 1s; }
+    .confetti:nth-child(7) { background: #98d8c8; left: 70%; animation: confetti-fall 3s linear infinite; animation-delay: 1.2s; }
+    .confetti:nth-child(8) { background: #f7dc6f; left: 80%; animation: confetti-fall 3s linear infinite; animation-delay: 1.4s; }
+    .confetti:nth-child(9) { background: #bb8fce; left: 90%; animation: confetti-fall 3s linear infinite; animation-delay: 1.6s; }
+    
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+    
+    .shape-1 {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      background: linear-gradient(45deg, rgba(139, 92, 246, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+      animation: float 6s ease-in-out infinite;
+      top: 10%;
+      left: 5%;
+      z-index: -1;
+    }
+    
+    .shape-2 {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      background: linear-gradient(45deg, rgba(139, 92, 246, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+      animation: float-2 4s ease-in-out infinite;
+      bottom: 15%;
+      right: 5%;
+      z-index: -1;
+    }
+    
+    .shape-3 {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      background: linear-gradient(45deg, rgba(139, 92, 246, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+      animation: float-3 5s ease-in-out infinite;
+      top: 60%;
+      left: 20%;
+      z-index: -1;
+    }
+    </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
 
@@ -150,6 +303,98 @@
     </div>
   </div>
   
-  <script src="js/script.js"></script>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('requestForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const buttonText = document.getElementById('buttonText');
+      const loadingSpinner = document.getElementById('loadingSpinner');
+      const alertError = document.getElementById('alertError');
+      const errorMessage = document.getElementById('errorMessage');
+      const successOverlay = document.getElementById('successOverlay');
+      const pesanInput = document.getElementById('pesan');
+      const charCount = document.getElementById('charCount');
+      
+      pesanInput.addEventListener('input', function() {
+        charCount.textContent = this.value.length;
+        if (this.value.length > 500) {
+          charCount.classList.add('text-red-500');
+        } else {
+          charCount.classList.remove('text-red-500');
+        }
+      });
+      
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const pesan = pesanInput.value.trim();
+        
+        if (!pesan) {
+          showError("Pesan tidak boleh kosong!");
+          return;
+        }
+        
+        if (pesan.length > 500) {
+          showError("Pesan maksimal 500 karakter!");
+          return;
+        }
+        
+        submitBtn.disabled = true;
+        buttonText.textContent = "Mengirim...";
+        loadingSpinner.classList.remove('hidden');
+        
+        const waktu = new Date().toLocaleString('id-ID', {
+          timeZone: 'Asia/Jakarta',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
+        
+        try {
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          
+          // In a real app, you would use:
+          // const res = await fetch("/api/request", {
+          //   method: "POST",
+          //   headers: { "Content-Type": "application/json" },
+          //   body: JSON.stringify({ pesan, waktu })
+          // });
+          
+          // For demo purposes, we'll assume success
+          showSuccess();
+          
+        } catch (error) {
+          showError("Terjadi kesalahan jaringan!");
+        } finally {
+          submitBtn.disabled = false;
+          buttonText.textContent = "Kirim Pesan";
+          loadingSpinner.classList.add('hidden');
+        }
+      });
+      
+      function showError(message) {
+        errorMessage.textContent = message;
+        alertError.classList.remove('hidden');
+        
+        setTimeout(() => {
+          alertError.classList.add('hidden');
+        }, 5000);
+      }
+      
+      function showSuccess() {
+        successOverlay.classList.add('opacity-100');
+        successOverlay.classList.remove('pointer-events-none');
+        
+        setTimeout(() => {
+          successOverlay.classList.remove('opacity-100');
+          successOverlay.classList.add('pointer-events-none');
+          form.reset();
+          charCount.textContent = '0';
+        }, 3000);
+      }
+    });
+  </script>
 </body>
 </html>
