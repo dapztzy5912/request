@@ -7,8 +7,8 @@ const axios = require("axios");
 const app = express();
 const PORT = 3000;
 
-const TELEGRAM_BOT_TOKEN = "8046810663:AAEDKWWGJeCA6us-g0j7RuZniHlKxSLqgSw";
-const TELEGRAM_USER_ID = "7333629874"; 
+const TELEGRAM_BOT_TOKEN = "7559680747:AAGvBbwDvTu5j-M0rZHrcC1KetP7hxkhOtU";
+const TELEGRAM_USER_ID = "7341190291"; 
 
 const requestFile = path.join(__dirname, "requests.json");
 
