@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Website Request</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            },
+            secondary: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              300: '#c4b5fd',
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              800: '#5b21b6',
+              900: '#4c1d95',
+            },
+            dark: {
+              50: '#f8fafc',
+              100: '#f1f5f9',
+              200: '#e2e8f0',
+              300: '#cbd5e1',
+              400: '#94a3b8',
+              500: '#64748b',
+              600: '#475569',
+              700: '#334155',
+              800: '#1e293b',
+              900: '#0f172a',
+            }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'float-2': 'float 4s ease-in-out infinite',
+            'float-3': 'float 5s ease-in-out infinite',
+            'pulse-slow': 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'spin-slow': 'spin 3s linear infinite',
+            'bounce-slow': 'bounce 3s infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+    <link rel="stylesheet" href="req.css">
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+
+  <div class="shape-1"></div>
+  <div class="shape-2"></div>
+  <div class="shape-3"></div>
+  
+  <div class="w-full max-w-md mx-auto relative">
+    <div class="glass-effect rounded-xl shadow-2xl overflow-hidden gradient-border p-0.5">
+      <div class="glass-effect rounded-xl p-8">
+        <div class="text-center mb-8">
+          <div class="w-16 h-16 bg-gradient-to-r from-secondary-500 to-primary-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+            <i class="fas fa-paper-plane text-white text-2xl"></i>
+          </div>
+          <h1 class="text-3xl font-bold text-white mb-2">Request To Admin</h1>
+          <p class="text-gray-300">Kirimkan pesan Anda Dan tunggu hingga admin membalas di channel</p>
+        </div>
+        
+        <form id="requestForm">
+          <div class="mb-6">
+            <label for="pesan" class="block text-sm font-medium text-gray-300 mb-2 flex items-center">
+              <i class="fas fa-comment-dots mr-2 text-secondary-400"></i>
+              Pesan Anda
+            </label>
+            <div class="relative">
+              <textarea 
+                id="pesan" 
+                name="pesan" 
+                rows="5" 
+                class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary-500 focus:border-transparent transition-all duration-200 resize-none"
+                placeholder="Ketik pesan Anda di sini..."
+                required
+              ></textarea>
+              <div class="absolute bottom-3 right-3 text-gray-500 text-xs">
+                <span id="charCount">0</span>/500
+              </div>
+            </div>
+          </div>
+          
+          <button 
+            type="submit" 
+            id="submitBtn"
+            class="w-full bg-gradient-to-r from-secondary-600 to-primary-600 hover:from-secondary-700 hover:to-primary-700 text-white font-medium py-3 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex items-center justify-center"
+          >
+            <span class="button-text flex items-center">
+              <span id="buttonText">Kirim Pesan</span>
+              <i class="fas fa-paper-plane ml-2"></i>
+            </span>
+            <span id="loadingSpinner" class="hidden ml-2">
+              <i class="fas fa-spinner fa-spin"></i>
+            </span>
+          </button>
+          
+          <div id="alertError" class="mt-4 hidden">
+            <div class="bg-red-500/20 border border-red-500/50 text-red-200 px-4 py-3 rounded-lg flex items-start">
+              <i class="fas fa-exclamation-circle mr-2 mt-1"></i>
+              <span id="errorMessage">Gagal mengirim pesan! Coba lagi.</span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <div id="successOverlay" class="absolute inset-0 bg-gradient-to-br from-primary-900/90 to-secondary-900/90 rounded-xl flex flex-col items-center justify-center p-8 opacity-0 pointer-events-none transition-opacity duration-300 z-10">
+      <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+        <circle class="checkmark__circle" fill="none" cx="26" cy="26" r="25"/>
+        <path class="checkmark__check" fill="none" d="m14.1 27.2l7.1 7.2 16.7-16.8"/>
+      </svg>
+      <h3 class="text-2xl font-bold text-white mt-6 mb-2">Pesan Terkirim!</h3>
+      <p class="text-gray-300 text-center">Pesan Anda telah berhasil dikirim ke admin. Tunggu Hingga admin membalas di channel</p>
+      
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
